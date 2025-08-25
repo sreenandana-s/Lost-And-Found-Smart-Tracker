@@ -2,7 +2,7 @@
 A system where lost items are registered and matched with found report
 <br>
 Contributors:<br>
-Yogita
-Sreenandana S
-Challa Vidya
-Peswika Bavagni
+Yogita<br>
+Sreenandana S<br>
+Challa Vidya<br>
+Peswika Bavagni<br>
