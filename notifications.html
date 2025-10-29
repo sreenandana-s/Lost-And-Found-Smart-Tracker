@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notifications</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="table-container">
+<h2>Your Notifications</h2>
+<ul id="notifications-list"></ul>
+</div>
+<script type="module">
+import { system } from "./js/main.js";
+if(!system.currentUser){alert("Please login first!"); window.location.href="login.html";}
+
+const list=document.getElementById('notifications-list');
+const notes=system.getNotifications();
+if(notes.length===0) list.innerHTML="<li>No notifications</li>";
+else notes.forEach(n=>{const li=document.createElement('li'); li.textContent=n; list.appendChild(li);});
+</script>
+</body>
+</html>

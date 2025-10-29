@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="logo">Lost & Found Tracker</div>
+    <nav>
+        <button id="logout-btn">Logout</button>
+        <button id="notif-btn">Notifications</button>
+    </nav>
+</div>
+
+<div class="dashboard-wrapper">
+    <div class="welcome-section">
+        <h1 id="welcome-msg">Welcome!</h1>
+    </div>
+
+    <div class="cards-container">
+        <div class="card lost">
+            <h2>Report Lost Item</h2>
+            <a href="report_lost.html" class="btn">Report</a>
+        </div>
+        <div class="card found">
+            <h2>Report Found Item</h2>
+            <a href="report_found.html" class="btn">Report</a>
+        </div>
+        <div class="card lost">
+            <h2>Browse Lost Items</h2>
+            <a href="browse_lost.html" class="btn">Browse</a>
+        </div>
+        <div class="card found">
+            <h2>Browse Found Items</h2>
+            <a href="browse_found.html" class="btn">Browse</a>
+        </div>
+        <div class="card lost">
+            <h2>Find Matches</h2>
+            <button id="match-btn" class="btn">Find</button>
+        </div>
+        <div class="card found">
+            <h2>Confirm Received Item</h2>
+            <button id="confirm-btn" class="btn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

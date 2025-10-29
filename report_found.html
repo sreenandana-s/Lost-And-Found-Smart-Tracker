@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Found Item</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="form-container">
+<h2>Report Found Item</h2>
+<form id="report-found-form">
+<label>Item Name</label><input type="text" id="item-name" required>
+<label>Description</label><input type="text" id="description" required>
+<label>Location</label><input type="text" id="location" required>
+<label>Date Found</label><input type="date" id="date" required>
+<label>Time Found</label><input type="time" id="time" required>
+<label>Contact</label><input type="text" id="contact" placeholder="Your phone number">
+<label>Picture (optional)</label><input type="file" id="picture" accept="image/*">
+<button type="submit" class="btn">Submit</button>
+</form>
+</div>
+<script type="module">
+import { system } from "./js/main.js";
+import { Item } from "./js/item.js";
+
+if(!system.currentUser){alert("Please login first!"); window.location.href="login.html";}
+
+const form=document.getElementById('report-found-form');
+form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const itemName=document.getElementById('item-name').value.trim();
+    const description=document.getElementById('description').value.trim();
+    const location=document.getElementById('location').value.trim();
+    const date=document.getElementById('date').value;
+    const time=document.getElementById('time').value;
+    const contact=document.getElementById('contact').value.trim();
+    const pictureFile=document.getElementById('picture').files[0];
+
+    let picturePath="";
+    if(pictureFile){
+        picturePath=await new Promise(resolve=>{
+            const reader=new FileReader();
+            reader.onload=()=>resolve(reader.result);
+            reader.readAsDataURL(pictureFile);
+        });
+    }
+
+    const newItem=new Item();
+    newItem.name=itemName;
+    newItem.description=description;
+    newItem.location=location;
+    newItem.dateFound=date;
+    newItem.timeFound=time;
+    newItem.picturePath=picturePath;
+    newItem.ownerName=system.currentUser.name;
+    newItem.ownerEmail=system.currentUser.email;
+    newItem.contact=contact;
+    newItem.isLost=false;
+    system.addFoundItem(newItem);
+
+    alert("Found item added!");
+    window.location.href="browse_found.html";
+});
+</script>
+</body>
+</html>

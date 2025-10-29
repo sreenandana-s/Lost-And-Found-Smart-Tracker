@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Found Items</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="table-container">
+    <h2>Browse Found Items</h2>
+    <div class="table-wrapper">
+        <table class="item-table" id="found-items-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Contact</th>
+                    <th>Reported By</th>
+                    <th>Picture</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script type="module">
+import { system } from "./js/main.js";
+
+if (!system.currentUser) {
+    alert("Please login first!");
+    window.location.href = "login.html";
+}
+
+const tbody = document.querySelector('#found-items-table tbody');
+
+system.foundItems.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${item.id}</td>
+        <td>${item.description}</td>
+        <td>${item.location}</td>
+        <td>${item.dateFound}</td>
+        <td>${item.timeFound}</td>
+        <td>${item.contact || "N/A"}</td>
+        <td>${item.ownerName || "Unknown"}</td>
+        <td>${item.picturePath ? `<img src="${item.picturePath}" class="item-pic">` : 'N/A'}</td>
+    `;
+    tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
